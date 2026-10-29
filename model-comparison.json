@@ -1,0 +1,89 @@
+{
+  "metadata": {
+    "dataset_rows": 1000000,
+    "feature_count_before_encoding": 30,
+    "target": "fraud_bool",
+    "fraud_rate_overall": 0.011029,
+    "random_state": 42,
+    "split": {
+      "method": "chronological by month",
+      "training_months": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "validation_month": 6,
+      "test_month": 7
+    },
+    "imbalance_handling": {
+      "logistic_regression": "class_weight=balanced",
+      "catboost": "scale_pos_weight = training negatives / training positives",
+      "lightgbm": "scale_pos_weight = training negatives / training positives"
+    },
+    "threshold_selection": "Best F1 on validation partition only; test results reported separately",
+    "thresholds_evaluated": [
+      0.01,
+      0.02,
+      0.03,
+      0.05,
+      0.075,
+      0.1,
+      0.15,
+      0.2,
+      0.3,
+      0.4,
+      0.5,
+      0.6,
+      0.7,
+      0.8,
+      0.9
+    ]
+  },
+  "models": [
+    {
+      "model": "catboost",
+      "roc_auc": 0.8888670544463658,
+      "average_precision": 0.21066830225684263,
+      "baseline_average_precision": 0.014745515938167962,
+      "precision_at_0_5": 0.07770961145194274,
+      "recall_at_0_5": 0.7450980392156863,
+      "f1_at_0_5": 0.14074074074074075,
+      "validation_selected_threshold": 0.9,
+      "test_precision_at_selected_threshold": 0.2563811684628474,
+      "test_recall_at_selected_threshold": 0.3165266106442577,
+      "test_f1_at_selected_threshold": 0.283296772171733,
+      "flagged_applications_at_selected_threshold": 1763
+    },
+    {
+      "model": "lightgbm",
+      "roc_auc": 0.8825222516822063,
+      "average_precision": 0.19180582640318988,
+      "baseline_average_precision": 0.014745515938167962,
+      "precision_at_0_5": 0.07805463824677274,
+      "recall_at_0_5": 0.7282913165266106,
+      "f1_at_0_5": 0.14099783080260303,
+      "validation_selected_threshold": 0.9,
+      "test_precision_at_selected_threshold": 0.26083650190114066,
+      "test_recall_at_selected_threshold": 0.24019607843137256,
+      "test_f1_at_selected_threshold": 0.25009114108640174,
+      "flagged_applications_at_selected_threshold": 1315
+    },
+    {
+      "model": "logistic_regression",
+      "roc_auc": 0.881564097629829,
+      "average_precision": 0.1791211197699654,
+      "baseline_average_precision": 0.014745515938167962,
+      "precision_at_0_5": 0.07223690451988887,
+      "recall_at_0_5": 0.7464985994397759,
+      "f1_at_0_5": 0.13172690763052208,
+      "validation_selected_threshold": 0.9,
+      "test_precision_at_selected_threshold": 0.26,
+      "test_recall_at_selected_threshold": 0.2184873949579832,
+      "test_f1_at_selected_threshold": 0.2374429223744292,
+      "flagged_applications_at_selected_threshold": 1200
+    }
+  ]
+}

@@ -1,0 +1,1444 @@
+{
+  "meta": {
+    "dataset": "Feedzai Bank Account Fraud (BAF)",
+    "source_file": "Base.csv",
+    "rows_analysed": 1000000,
+    "fraud_label": "fraud_bool",
+    "generated_at": "2026-10-29T13:31:30.977283+00:00",
+    "note": "Aggregated summaries only; no application-level rows are included."
+  },
+  "overview": {
+    "applications": 1000000,
+    "fraud": 11029,
+    "legitimate": 988971,
+    "fraud_rate": 0.011029,
+    "legitimate_rate": 0.988971,
+    "months": 8
+  },
+  "monthly": [
+    {
+      "month": 0,
+      "applications": 132440,
+      "fraud": 1500,
+      "fraud_rate": 0.011325883418906675
+    },
+    {
+      "month": 1,
+      "applications": 127620,
+      "fraud": 1198,
+      "fraud_rate": 0.009387243378780755
+    },
+    {
+      "month": 2,
+      "applications": 136979,
+      "fraud": 1198,
+      "fraud_rate": 0.008745866154666044
+    },
+    {
+      "month": 3,
+      "applications": 150936,
+      "fraud": 1392,
+      "fraud_rate": 0.009222451900143107
+    },
+    {
+      "month": 4,
+      "applications": 127691,
+      "fraud": 1452,
+      "fraud_rate": 0.011371200789405674
+    },
+    {
+      "month": 5,
+      "applications": 119323,
+      "fraud": 1411,
+      "fraud_rate": 0.01182504630289215
+    },
+    {
+      "month": 6,
+      "applications": 108168,
+      "fraud": 1450,
+      "fraud_rate": 0.013405073589231566
+    },
+    {
+      "month": 7,
+      "applications": 96843,
+      "fraud": 1428,
+      "fraud_rate": 0.014745515938167962
+    }
+  ],
+  "features": {
+    "month": {
+      "kind": "categorical",
+      "groups": [
+        {
+          "label": "3",
+          "applications": 150936,
+          "fraud": 1392,
+          "fraud_rate": 0.009222451900143107
+        },
+        {
+          "label": "2",
+          "applications": 136979,
+          "fraud": 1198,
+          "fraud_rate": 0.008745866154666044
+        },
+        {
+          "label": "0",
+          "applications": 132440,
+          "fraud": 1500,
+          "fraud_rate": 0.011325883418906675
+        },
+        {
+          "label": "4",
+          "applications": 127691,
+          "fraud": 1452,
+          "fraud_rate": 0.011371200789405674
+        },
+        {
+          "label": "1",
+          "applications": 127620,
+          "fraud": 1198,
+          "fraud_rate": 0.009387243378780755
+        },
+        {
+          "label": "5",
+          "applications": 119323,
+          "fraud": 1411,
+          "fraud_rate": 0.01182504630289215
+        },
+        {
+          "label": "6",
+          "applications": 108168,
+          "fraud": 1450,
+          "fraud_rate": 0.013405073589231566
+        },
+        {
+          "label": "7",
+          "applications": 96843,
+          "fraud": 1428,
+          "fraud_rate": 0.014745515938167962
+        }
+      ]
+    },
+    "payment_type": {
+      "kind": "categorical",
+      "groups": [
+        {
+          "label": "AB",
+          "applications": 370554,
+          "fraud": 4169,
+          "fraud_rate": 0.011250721892085903
+        },
+        {
+          "label": "AA",
+          "applications": 258249,
+          "fraud": 1364,
+          "fraud_rate": 0.005281724227392943
+        },
+        {
+          "label": "AC",
+          "applications": 252071,
+          "fraud": 4209,
+          "fraud_rate": 0.016697676448302265
+        },
+        {
+          "label": "AD",
+          "applications": 118837,
+          "fraud": 1286,
+          "fraud_rate": 0.010821545478260138
+        },
+        {
+          "label": "AE",
+          "applications": 289,
+          "fraud": 1,
+          "fraud_rate": 0.0034602076124567475
+        }
+      ]
+    },
+    "employment_status": {
+      "kind": "categorical",
+      "groups": [
+        {
+          "label": "CA",
+          "applications": 730252,
+          "fraud": 8899,
+          "fraud_rate": 0.012186204214435564
+        },
+        {
+          "label": "CB",
+          "applications": 138288,
+          "fraud": 953,
+          "fraud_rate": 0.0068914150179335875
+        },
+        {
+          "label": "CF",
+          "applications": 44034,
+          "fraud": 85,
+          "fraud_rate": 0.0019303265658354907
+        },
+        {
+          "label": "CC",
+          "applications": 37758,
+          "fraud": 932,
+          "fraud_rate": 0.024683510779172625
+        },
+        {
+          "label": "CD",
+          "applications": 26522,
+          "fraud": 100,
+          "fraud_rate": 0.0037704547168388508
+        },
+        {
+          "label": "CE",
+          "applications": 22693,
+          "fraud": 53,
+          "fraud_rate": 0.002335521967126427
+        },
+        {
+          "label": "CG",
+          "applications": 453,
+          "fraud": 7,
+          "fraud_rate": 0.01545253863134658
+        }
+      ]
+    },
+    "housing_status": {
+      "kind": "categorical",
+      "groups": [
+        {
+          "label": "BC",
+          "applications": 372143,
+          "fraud": 2288,
+          "fraud_rate": 0.006148174223349626
+        },
+        {
+          "label": "BB",
+          "applications": 260965,
+          "fraud": 1568,
+          "fraud_rate": 0.0060084685685819934
+        },
+        {
+          "label": "BA",
+          "applications": 169675,
+          "fraud": 6357,
+          "fraud_rate": 0.0374657433328422
+        },
+        {
+          "label": "BE",
+          "applications": 169135,
+          "fraud": 582,
+          "fraud_rate": 0.003441038223903982
+        },
+        {
+          "label": "BD",
+          "applications": 26161,
+          "fraud": 226,
+          "fraud_rate": 0.008638813501012959
+        },
+        {
+          "label": "BF",
+          "applications": 1669,
+          "fraud": 7,
+          "fraud_rate": 0.004194128220491312
+        },
+        {
+          "label": "BG",
+          "applications": 252,
+          "fraud": 1,
+          "fraud_rate": 0.003968253968253968
+        }
+      ]
+    },
+    "source": {
+      "kind": "categorical",
+      "groups": [
+        {
+          "label": "INTERNET",
+          "applications": 992952,
+          "fraud": 10917,
+          "fraud_rate": 0.010994489159596839
+        },
+        {
+          "label": "TELEAPP",
+          "applications": 7048,
+          "fraud": 112,
+          "fraud_rate": 0.015891032917139614
+        }
+      ]
+    },
+    "device_os": {
+      "kind": "categorical",
+      "groups": [
+        {
+          "label": "other",
+          "applications": 342728,
+          "fraud": 1974,
+          "fraud_rate": 0.005759669475502439
+        },
+        {
+          "label": "linux",
+          "applications": 332712,
+          "fraud": 1715,
+          "fraud_rate": 0.0051546081896655365
+        },
+        {
+          "label": "windows",
+          "applications": 263506,
+          "fraud": 6507,
+          "fraud_rate": 0.02469393486296327
+        },
+        {
+          "label": "macintosh",
+          "applications": 53826,
+          "fraud": 752,
+          "fraud_rate": 0.013970943410247835
+        },
+        {
+          "label": "x11",
+          "applications": 7228,
+          "fraud": 81,
+          "fraud_rate": 0.011206419479800774
+        }
+      ]
+    },
+    "email_is_free": {
+      "kind": "categorical",
+      "groups": [
+        {
+          "label": "1",
+          "applications": 529886,
+          "fraud": 7291,
+          "fraud_rate": 0.013759563377783146
+        },
+        {
+          "label": "0",
+          "applications": 470114,
+          "fraud": 3738,
+          "fraud_rate": 0.007951262885172533
+        }
+      ]
+    },
+    "phone_home_valid": {
+      "kind": "categorical",
+      "groups": [
+        {
+          "label": "0",
+          "applications": 582923,
+          "fraud": 8238,
+          "fraud_rate": 0.01413222672634293
+        },
+        {
+          "label": "1",
+          "applications": 417077,
+          "fraud": 2791,
+          "fraud_rate": 0.00669180990560496
+        }
+      ]
+    },
+    "phone_mobile_valid": {
+      "kind": "categorical",
+      "groups": [
+        {
+          "label": "1",
+          "applications": 889676,
+          "fraud": 9381,
+          "fraud_rate": 0.010544288032946826
+        },
+        {
+          "label": "0",
+          "applications": 110324,
+          "fraud": 1648,
+          "fraud_rate": 0.01493781951343316
+        }
+      ]
+    },
+    "has_other_cards": {
+      "kind": "categorical",
+      "groups": [
+        {
+          "label": "0",
+          "applications": 777012,
+          "fraud": 10098,
+          "fraud_rate": 0.012995938286667388
+        },
+        {
+          "label": "1",
+          "applications": 222988,
+          "fraud": 931,
+          "fraud_rate": 0.004175112562110965
+        }
+      ]
+    },
+    "foreign_request": {
+      "kind": "categorical",
+      "groups": [
+        {
+          "label": "0",
+          "applications": 974758,
+          "fraud": 10474,
+          "fraud_rate": 0.010745231124032837
+        },
+        {
+          "label": "1",
+          "applications": 25242,
+          "fraud": 555,
+          "fraud_rate": 0.021987164250059425
+        }
+      ]
+    },
+    "keep_alive_session": {
+      "kind": "categorical",
+      "groups": [
+        {
+          "label": "1",
+          "applications": 576947,
+          "fraud": 3768,
+          "fraud_rate": 0.006530929184136498
+        },
+        {
+          "label": "0",
+          "applications": 423053,
+          "fraud": 7261,
+          "fraud_rate": 0.017163334144894377
+        }
+      ]
+    },
+    "name_email_similarity": {
+      "kind": "numeric",
+      "groups": [
+        {
+          "label": "(-0.00099857, 0.183]",
+          "applications": 200000,
+          "fraud": 3912,
+          "fraud_rate": 0.01956
+        },
+        {
+          "label": "(0.183, 0.39]",
+          "applications": 200000,
+          "fraud": 2439,
+          "fraud_rate": 0.012195
+        },
+        {
+          "label": "(0.39, 0.588]",
+          "applications": 200000,
+          "fraud": 1403,
+          "fraud_rate": 0.007015
+        },
+        {
+          "label": "(0.588, 0.806]",
+          "applications": 200000,
+          "fraud": 1752,
+          "fraud_rate": 0.00876
+        },
+        {
+          "label": "(0.806, 1.0]",
+          "applications": 200000,
+          "fraud": 1523,
+          "fraud_rate": 0.007615
+        }
+      ]
+    },
+    "credit_risk_score": {
+      "kind": "numeric",
+      "groups": [
+        {
+          "label": "Negative sentinel value",
+          "applications": 14445,
+          "fraud": 56,
+          "fraud_rate": 0.0038767739702319144
+        },
+        {
+          "label": "(-0.001, 76.0]",
+          "applications": 200929,
+          "fraud": 1273,
+          "fraud_rate": 0.006335571271444142
+        },
+        {
+          "label": "(109.0, 142.0]",
+          "applications": 194330,
+          "fraud": 1274,
+          "fraud_rate": 0.006555858591056451
+        },
+        {
+          "label": "(142.0, 193.0]",
+          "applications": 197413,
+          "fraud": 2263,
+          "fraud_rate": 0.011463277494389934
+        },
+        {
+          "label": "(193.0, 389.0]",
+          "applications": 193707,
+          "fraud": 4825,
+          "fraud_rate": 0.024908753942810533
+        },
+        {
+          "label": "(76.0, 109.0]",
+          "applications": 199176,
+          "fraud": 1338,
+          "fraud_rate": 0.006717676828533558
+        }
+      ]
+    },
+    "velocity_6h": {
+      "kind": "numeric",
+      "groups": [
+        {
+          "label": "Negative sentinel value",
+          "applications": 44,
+          "fraud": 0,
+          "fraud_rate": 0.0
+        },
+        {
+          "label": "(0.65, 2991.899]",
+          "applications": 199992,
+          "fraud": 2862,
+          "fraud_rate": 0.014310572422896916
+        },
+        {
+          "label": "(2991.899, 4558.943]",
+          "applications": 199991,
+          "fraud": 2108,
+          "fraud_rate": 0.01054047432134446
+        },
+        {
+          "label": "(4558.943, 6148.142]",
+          "applications": 199991,
+          "fraud": 2289,
+          "fraud_rate": 0.011445515048177169
+        },
+        {
+          "label": "(6148.142, 8187.931]",
+          "applications": 199991,
+          "fraud": 2054,
+          "fraud_rate": 0.010270462170797686
+        },
+        {
+          "label": "(8187.931, 16715.565]",
+          "applications": 199991,
+          "fraud": 1716,
+          "fraud_rate": 0.008580386117375282
+        }
+      ]
+    },
+    "velocity_24h": {
+      "kind": "numeric",
+      "groups": [
+        {
+          "label": "(1300.306, 3365.274]",
+          "applications": 200000,
+          "fraud": 2705,
+          "fraud_rate": 0.013525
+        },
+        {
+          "label": "(3365.274, 4289.424]",
+          "applications": 200000,
+          "fraud": 1815,
+          "fraud_rate": 0.009075
+        },
+        {
+          "label": "(4289.424, 5102.091]",
+          "applications": 200000,
+          "fraud": 2609,
+          "fraud_rate": 0.013045
+        },
+        {
+          "label": "(5102.091, 6005.838]",
+          "applications": 200000,
+          "fraud": 2140,
+          "fraud_rate": 0.0107
+        },
+        {
+          "label": "(6005.838, 9506.897]",
+          "applications": 200000,
+          "fraud": 1760,
+          "fraud_rate": 0.0088
+        }
+      ]
+    },
+    "velocity_4w": {
+      "kind": "numeric",
+      "groups": [
+        {
+          "label": "(2825.747, 4212.42]",
+          "applications": 200000,
+          "fraud": 2958,
+          "fraud_rate": 0.01479
+        },
+        {
+          "label": "(4212.42, 4667.15]",
+          "applications": 200000,
+          "fraud": 1964,
+          "fraud_rate": 0.00982
+        },
+        {
+          "label": "(4667.15, 5125.119]",
+          "applications": 200000,
+          "fraud": 2274,
+          "fraud_rate": 0.01137
+        },
+        {
+          "label": "(5125.119, 5571.048]",
+          "applications": 200000,
+          "fraud": 1835,
+          "fraud_rate": 0.009175
+        },
+        {
+          "label": "(5571.048, 6994.764]",
+          "applications": 200000,
+          "fraud": 1998,
+          "fraud_rate": 0.00999
+        }
+      ]
+    },
+    "customer_age": {
+      "kind": "numeric",
+      "groups": [
+        {
+          "label": "(20.0, 30.0]",
+          "applications": 311433,
+          "fraud": 2589,
+          "fraud_rate": 0.008313184537284102
+        },
+        {
+          "label": "(30.0, 40.0]",
+          "applications": 238712,
+          "fraud": 2876,
+          "fraud_rate": 0.012047990884413017
+        },
+        {
+          "label": "(40.0, 90.0]",
+          "applications": 183013,
+          "fraud": 4285,
+          "fraud_rate": 0.023413637282597412
+        },
+        {
+          "label": "(9.999, 20.0]",
+          "applications": 266842,
+          "fraud": 1279,
+          "fraud_rate": 0.004793098537711454
+        }
+      ]
+    },
+    "income": {
+      "kind": "numeric",
+      "groups": [
+        {
+          "label": "(0.099, 0.2]",
+          "applications": 226794,
+          "fraud": 1347,
+          "fraud_rate": 0.005939310563771528
+        },
+        {
+          "label": "(0.2, 0.5]",
+          "applications": 188055,
+          "fraud": 1379,
+          "fraud_rate": 0.007332961101805323
+        },
+        {
+          "label": "(0.5, 0.7]",
+          "applications": 217082,
+          "fraud": 1910,
+          "fraud_rate": 0.008798518532167569
+        },
+        {
+          "label": "(0.7, 0.9]",
+          "applications": 368069,
+          "fraud": 6393,
+          "fraud_rate": 0.01736902591633634
+        }
+      ]
+    },
+    "device_distinct_emails_8w": {
+      "kind": "numeric",
+      "groups": [
+        {
+          "label": "Negative sentinel value",
+          "applications": 359,
+          "fraud": 4,
+          "fraud_rate": 0.011142061281337047
+        },
+        {
+          "label": "(-0.001, 1.0]",
+          "applications": 974339,
+          "fraud": 9990,
+          "fraud_rate": 0.010253104925493077
+        },
+        {
+          "label": "(1.0, 2.0]",
+          "applications": 25302,
+          "fraud": 1035,
+          "fraud_rate": 0.0409058572444866
+        }
+      ]
+    },
+    "date_of_birth_distinct_emails_4w": {
+      "kind": "numeric",
+      "groups": [
+        {
+          "label": "(-0.001, 5.0]",
+          "applications": 239005,
+          "fraud": 4382,
+          "fraud_rate": 0.018334344469780967
+        },
+        {
+          "label": "(10.0, 14.0]",
+          "applications": 226565,
+          "fraud": 1484,
+          "fraud_rate": 0.0065499966896917
+        },
+        {
+          "label": "(14.0, 39.0]",
+          "applications": 163499,
+          "fraud": 1026,
+          "fraud_rate": 0.006275267738640604
+        },
+        {
+          "label": "(5.0, 7.0]",
+          "applications": 161418,
+          "fraud": 1805,
+          "fraud_rate": 0.011182148211475796
+        },
+        {
+          "label": "(7.0, 10.0]",
+          "applications": 209513,
+          "fraud": 2332,
+          "fraud_rate": 0.011130574236443562
+        }
+      ]
+    },
+    "zip_count_4w": {
+      "kind": "numeric",
+      "groups": [
+        {
+          "label": "(0.999, 817.0]",
+          "applications": 200296,
+          "fraud": 2082,
+          "fraud_rate": 0.010394615968366817
+        },
+        {
+          "label": "(1107.0, 1473.0]",
+          "applications": 199456,
+          "fraud": 2066,
+          "fraud_rate": 0.010358174233916252
+        },
+        {
+          "label": "(1473.0, 2244.0]",
+          "applications": 200020,
+          "fraud": 2421,
+          "fraud_rate": 0.012103789621037897
+        },
+        {
+          "label": "(2244.0, 6700.0]",
+          "applications": 199911,
+          "fraud": 2377,
+          "fraud_rate": 0.011890291179574911
+        },
+        {
+          "label": "(817.0, 1107.0]",
+          "applications": 200317,
+          "fraud": 2083,
+          "fraud_rate": 0.010398518348417757
+        }
+      ]
+    },
+    "bank_branch_count_8w": {
+      "kind": "numeric",
+      "groups": [
+        {
+          "label": "(-0.001, 1.0]",
+          "applications": 293404,
+          "fraud": 4960,
+          "fraud_rate": 0.016905018336491662
+        },
+        {
+          "label": "(1.0, 5.0]",
+          "applications": 107663,
+          "fraud": 1012,
+          "fraud_rate": 0.009399700918607135
+        },
+        {
+          "label": "(13.0, 39.0]",
+          "applications": 177371,
+          "fraud": 1542,
+          "fraud_rate": 0.008693642139921407
+        },
+        {
+          "label": "(39.0, 2385.0]",
+          "applications": 199475,
+          "fraud": 1500,
+          "fraud_rate": 0.007519739315703722
+        },
+        {
+          "label": "(5.0, 13.0]",
+          "applications": 222087,
+          "fraud": 2015,
+          "fraud_rate": 0.009073020933237875
+        }
+      ]
+    },
+    "prev_address_months_count": {
+      "kind": "numeric",
+      "groups": [
+        {
+          "label": "Negative sentinel value",
+          "applications": 712920,
+          "fraud": 10134,
+          "fraud_rate": 0.014214778656791787
+        },
+        {
+          "label": "(23.0, 30.0]",
+          "applications": 62781,
+          "fraud": 150,
+          "fraud_rate": 0.002389257896497348
+        },
+        {
+          "label": "(30.0, 50.0]",
+          "applications": 53632,
+          "fraud": 132,
+          "fraud_rate": 0.002461217183770883
+        },
+        {
+          "label": "(4.999, 23.0]",
+          "applications": 58453,
+          "fraud": 144,
+          "fraud_rate": 0.002463517697979573
+        },
+        {
+          "label": "(50.0, 92.0]",
+          "applications": 55133,
+          "fraud": 162,
+          "fraud_rate": 0.0029383490831262583
+        },
+        {
+          "label": "(92.0, 383.0]",
+          "applications": 57081,
+          "fraud": 307,
+          "fraud_rate": 0.005378322033601374
+        }
+      ]
+    },
+    "current_address_months_count": {
+      "kind": "numeric",
+      "groups": [
+        {
+          "label": "Negative sentinel value",
+          "applications": 4254,
+          "fraud": 14,
+          "fraud_rate": 0.003291020216267043
+        },
+        {
+          "label": "(-0.001, 14.0]",
+          "applications": 207520,
+          "fraud": 717,
+          "fraud_rate": 0.00345508866615266
+        },
+        {
+          "label": "(14.0, 40.0]",
+          "applications": 198409,
+          "fraud": 1065,
+          "fraud_rate": 0.005367700053929005
+        },
+        {
+          "label": "(156.0, 428.0]",
+          "applications": 198264,
+          "fraud": 2755,
+          "fraud_rate": 0.013895613928902878
+        },
+        {
+          "label": "(40.0, 73.0]",
+          "applications": 191614,
+          "fraud": 2601,
+          "fraud_rate": 0.013574164727003245
+        },
+        {
+          "label": "(73.0, 156.0]",
+          "applications": 199939,
+          "fraud": 3877,
+          "fraud_rate": 0.019390914228839796
+        }
+      ]
+    },
+    "session_length_in_minutes": {
+      "kind": "numeric",
+      "groups": [
+        {
+          "label": "Negative sentinel value",
+          "applications": 2015,
+          "fraud": 18,
+          "fraud_rate": 0.008933002481389578
+        },
+        {
+          "label": "(-0.00012799999999999997, 2.615]",
+          "applications": 199597,
+          "fraud": 2007,
+          "fraud_rate": 0.010055261351623521
+        },
+        {
+          "label": "(10.319, 85.899]",
+          "applications": 199597,
+          "fraud": 2145,
+          "fraud_rate": 0.010746654508835303
+        },
+        {
+          "label": "(2.615, 4.32]",
+          "applications": 199597,
+          "fraud": 2312,
+          "fraud_rate": 0.0115833404309684
+        },
+        {
+          "label": "(4.32, 6.173]",
+          "applications": 199597,
+          "fraud": 2323,
+          "fraud_rate": 0.01163845147973166
+        },
+        {
+          "label": "(6.173, 10.319]",
+          "applications": 199597,
+          "fraud": 2224,
+          "fraud_rate": 0.011142452040862338
+        }
+      ]
+    },
+    "proposed_credit_limit": {
+      "kind": "numeric",
+      "groups": [
+        {
+          "label": "(1000.0, 2100.0]",
+          "applications": 152280,
+          "fraud": 4061,
+          "fraud_rate": 0.026667980036774362
+        },
+        {
+          "label": "(189.999, 200.0]",
+          "applications": 614017,
+          "fraud": 4425,
+          "fraud_rate": 0.007206640858477859
+        },
+        {
+          "label": "(200.0, 1000.0]",
+          "applications": 233703,
+          "fraud": 2543,
+          "fraud_rate": 0.010881332289273137
+        }
+      ]
+    },
+    "days_since_request": {
+      "kind": "numeric",
+      "groups": [
+        {
+          "label": "(-0.0009999959600000001, 0.00572]",
+          "applications": 200000,
+          "fraud": 2678,
+          "fraud_rate": 0.01339
+        },
+        {
+          "label": "(0.00572, 0.0118]",
+          "applications": 200000,
+          "fraud": 2363,
+          "fraud_rate": 0.011815
+        },
+        {
+          "label": "(0.0118, 0.019]",
+          "applications": 200000,
+          "fraud": 2287,
+          "fraud_rate": 0.011435
+        },
+        {
+          "label": "(0.019, 0.0298]",
+          "applications": 200000,
+          "fraud": 1832,
+          "fraud_rate": 0.00916
+        },
+        {
+          "label": "(0.0298, 78.457]",
+          "applications": 200000,
+          "fraud": 1869,
+          "fraud_rate": 0.009345
+        }
+      ]
+    },
+    "intended_balcon_amount": {
+      "kind": "numeric",
+      "groups": [
+        {
+          "label": "Negative sentinel value",
+          "applications": 742523,
+          "fraud": 9747,
+          "fraud_rate": 0.013126866103810926
+        },
+        {
+          "label": "(-0.0009457000000000001, 17.913]",
+          "applications": 51496,
+          "fraud": 218,
+          "fraud_rate": 0.004233338511729066
+        },
+        {
+          "label": "(17.913, 27.424]",
+          "applications": 51495,
+          "fraud": 243,
+          "fraud_rate": 0.00471890474803379
+        },
+        {
+          "label": "(27.424, 38.782]",
+          "applications": 51495,
+          "fraud": 248,
+          "fraud_rate": 0.0048160015535488885
+        },
+        {
+          "label": "(38.782, 50.312]",
+          "applications": 51495,
+          "fraud": 249,
+          "fraud_rate": 0.004835420914651908
+        },
+        {
+          "label": "(50.312, 112.957]",
+          "applications": 51496,
+          "fraud": 324,
+          "fraud_rate": 0.006291750815597328
+        }
+      ]
+    },
+    "bank_months_count": {
+      "kind": "numeric",
+      "groups": [
+        {
+          "label": "Negative sentinel value",
+          "applications": 253635,
+          "fraud": 4140,
+          "fraud_rate": 0.01632266840144302
+        },
+        {
+          "label": "(0.999, 10.0]",
+          "applications": 321651,
+          "fraud": 2552,
+          "fraud_rate": 0.007934065182449301
+        },
+        {
+          "label": "(10.0, 20.0]",
+          "applications": 128622,
+          "fraud": 963,
+          "fraud_rate": 0.007487055091663946
+        },
+        {
+          "label": "(20.0, 28.0]",
+          "applications": 187489,
+          "fraud": 1724,
+          "fraud_rate": 0.009195206118758967
+        },
+        {
+          "label": "(28.0, 32.0]",
+          "applications": 108603,
+          "fraud": 1650,
+          "fraud_rate": 0.015192950470981464
+        }
+      ]
+    }
+  },
+  "segment_rankings": {
+    "month": [
+      {
+        "label": "7",
+        "applications": 96843,
+        "fraud": 1428,
+        "fraud_rate": 0.014745515938167962
+      },
+      {
+        "label": "6",
+        "applications": 108168,
+        "fraud": 1450,
+        "fraud_rate": 0.013405073589231566
+      },
+      {
+        "label": "5",
+        "applications": 119323,
+        "fraud": 1411,
+        "fraud_rate": 0.01182504630289215
+      },
+      {
+        "label": "4",
+        "applications": 127691,
+        "fraud": 1452,
+        "fraud_rate": 0.011371200789405674
+      },
+      {
+        "label": "0",
+        "applications": 132440,
+        "fraud": 1500,
+        "fraud_rate": 0.011325883418906675
+      },
+      {
+        "label": "1",
+        "applications": 127620,
+        "fraud": 1198,
+        "fraud_rate": 0.009387243378780755
+      },
+      {
+        "label": "3",
+        "applications": 150936,
+        "fraud": 1392,
+        "fraud_rate": 0.009222451900143107
+      },
+      {
+        "label": "2",
+        "applications": 136979,
+        "fraud": 1198,
+        "fraud_rate": 0.008745866154666044
+      }
+    ],
+    "payment_type": [
+      {
+        "label": "AC",
+        "applications": 252071,
+        "fraud": 4209,
+        "fraud_rate": 0.016697676448302265
+      },
+      {
+        "label": "AB",
+        "applications": 370554,
+        "fraud": 4169,
+        "fraud_rate": 0.011250721892085903
+      },
+      {
+        "label": "AD",
+        "applications": 118837,
+        "fraud": 1286,
+        "fraud_rate": 0.010821545478260138
+      },
+      {
+        "label": "AA",
+        "applications": 258249,
+        "fraud": 1364,
+        "fraud_rate": 0.005281724227392943
+      },
+      {
+        "label": "AE",
+        "applications": 289,
+        "fraud": 1,
+        "fraud_rate": 0.0034602076124567475
+      }
+    ],
+    "employment_status": [
+      {
+        "label": "CC",
+        "applications": 37758,
+        "fraud": 932,
+        "fraud_rate": 0.024683510779172625
+      },
+      {
+        "label": "CG",
+        "applications": 453,
+        "fraud": 7,
+        "fraud_rate": 0.01545253863134658
+      },
+      {
+        "label": "CA",
+        "applications": 730252,
+        "fraud": 8899,
+        "fraud_rate": 0.012186204214435564
+      },
+      {
+        "label": "CB",
+        "applications": 138288,
+        "fraud": 953,
+        "fraud_rate": 0.0068914150179335875
+      },
+      {
+        "label": "CD",
+        "applications": 26522,
+        "fraud": 100,
+        "fraud_rate": 0.0037704547168388508
+      },
+      {
+        "label": "CE",
+        "applications": 22693,
+        "fraud": 53,
+        "fraud_rate": 0.002335521967126427
+      },
+      {
+        "label": "CF",
+        "applications": 44034,
+        "fraud": 85,
+        "fraud_rate": 0.0019303265658354907
+      }
+    ],
+    "housing_status": [
+      {
+        "label": "BA",
+        "applications": 169675,
+        "fraud": 6357,
+        "fraud_rate": 0.0374657433328422
+      },
+      {
+        "label": "BD",
+        "applications": 26161,
+        "fraud": 226,
+        "fraud_rate": 0.008638813501012959
+      },
+      {
+        "label": "BC",
+        "applications": 372143,
+        "fraud": 2288,
+        "fraud_rate": 0.006148174223349626
+      },
+      {
+        "label": "BB",
+        "applications": 260965,
+        "fraud": 1568,
+        "fraud_rate": 0.0060084685685819934
+      },
+      {
+        "label": "BF",
+        "applications": 1669,
+        "fraud": 7,
+        "fraud_rate": 0.004194128220491312
+      },
+      {
+        "label": "BG",
+        "applications": 252,
+        "fraud": 1,
+        "fraud_rate": 0.003968253968253968
+      },
+      {
+        "label": "BE",
+        "applications": 169135,
+        "fraud": 582,
+        "fraud_rate": 0.003441038223903982
+      }
+    ],
+    "source": [
+      {
+        "label": "TELEAPP",
+        "applications": 7048,
+        "fraud": 112,
+        "fraud_rate": 0.015891032917139614
+      },
+      {
+        "label": "INTERNET",
+        "applications": 992952,
+        "fraud": 10917,
+        "fraud_rate": 0.010994489159596839
+      }
+    ],
+    "device_os": [
+      {
+        "label": "windows",
+        "applications": 263506,
+        "fraud": 6507,
+        "fraud_rate": 0.02469393486296327
+      },
+      {
+        "label": "macintosh",
+        "applications": 53826,
+        "fraud": 752,
+        "fraud_rate": 0.013970943410247835
+      },
+      {
+        "label": "x11",
+        "applications": 7228,
+        "fraud": 81,
+        "fraud_rate": 0.011206419479800774
+      },
+      {
+        "label": "other",
+        "applications": 342728,
+        "fraud": 1974,
+        "fraud_rate": 0.005759669475502439
+      },
+      {
+        "label": "linux",
+        "applications": 332712,
+        "fraud": 1715,
+        "fraud_rate": 0.0051546081896655365
+      }
+    ],
+    "email_is_free": [
+      {
+        "label": "1",
+        "applications": 529886,
+        "fraud": 7291,
+        "fraud_rate": 0.013759563377783146
+      },
+      {
+        "label": "0",
+        "applications": 470114,
+        "fraud": 3738,
+        "fraud_rate": 0.007951262885172533
+      }
+    ],
+    "phone_home_valid": [
+      {
+        "label": "0",
+        "applications": 582923,
+        "fraud": 8238,
+        "fraud_rate": 0.01413222672634293
+      },
+      {
+        "label": "1",
+        "applications": 417077,
+        "fraud": 2791,
+        "fraud_rate": 0.00669180990560496
+      }
+    ],
+    "phone_mobile_valid": [
+      {
+        "label": "0",
+        "applications": 110324,
+        "fraud": 1648,
+        "fraud_rate": 0.01493781951343316
+      },
+      {
+        "label": "1",
+        "applications": 889676,
+        "fraud": 9381,
+        "fraud_rate": 0.010544288032946826
+      }
+    ],
+    "has_other_cards": [
+      {
+        "label": "0",
+        "applications": 777012,
+        "fraud": 10098,
+        "fraud_rate": 0.012995938286667388
+      },
+      {
+        "label": "1",
+        "applications": 222988,
+        "fraud": 931,
+        "fraud_rate": 0.004175112562110965
+      }
+    ],
+    "foreign_request": [
+      {
+        "label": "1",
+        "applications": 25242,
+        "fraud": 555,
+        "fraud_rate": 0.021987164250059425
+      },
+      {
+        "label": "0",
+        "applications": 974758,
+        "fraud": 10474,
+        "fraud_rate": 0.010745231124032837
+      }
+    ],
+    "keep_alive_session": [
+      {
+        "label": "0",
+        "applications": 423053,
+        "fraud": 7261,
+        "fraud_rate": 0.017163334144894377
+      },
+      {
+        "label": "1",
+        "applications": 576947,
+        "fraud": 3768,
+        "fraud_rate": 0.006530929184136498
+      }
+    ]
+  },
+  "data_quality": [
+    {
+      "field": "prev_address_months_count",
+      "negative_sentinel_count": 712920,
+      "negative_sentinel_rate": 0.71292,
+      "blank_or_non_numeric_count": 0,
+      "blank_or_non_numeric_rate": 0.0
+    },
+    {
+      "field": "current_address_months_count",
+      "negative_sentinel_count": 4254,
+      "negative_sentinel_rate": 0.004254,
+      "blank_or_non_numeric_count": 0,
+      "blank_or_non_numeric_rate": 0.0
+    },
+    {
+      "field": "bank_months_count",
+      "negative_sentinel_count": 253635,
+      "negative_sentinel_rate": 0.253635,
+      "blank_or_non_numeric_count": 0,
+      "blank_or_non_numeric_rate": 0.0
+    },
+    {
+      "field": "session_length_in_minutes",
+      "negative_sentinel_count": 2015,
+      "negative_sentinel_rate": 0.002015,
+      "blank_or_non_numeric_count": 0,
+      "blank_or_non_numeric_rate": 0.0
+    },
+    {
+      "field": "device_distinct_emails_8w",
+      "negative_sentinel_count": 359,
+      "negative_sentinel_rate": 0.000359,
+      "blank_or_non_numeric_count": 0,
+      "blank_or_non_numeric_rate": 0.0
+    },
+    {
+      "field": "intended_balcon_amount",
+      "negative_sentinel_count": 742523,
+      "negative_sentinel_rate": 0.742523,
+      "blank_or_non_numeric_count": 0,
+      "blank_or_non_numeric_rate": 0.0
+    }
+  ],
+  "correlations": [
+    {
+      "feature": "credit_risk_score",
+      "spearman_correlation_with_fraud_label": 0.06017164642784971,
+      "observations": 1000000
+    },
+    {
+      "feature": "customer_age",
+      "spearman_correlation_with_fraud_label": 0.05814570392241626,
+      "observations": 1000000
+    },
+    {
+      "feature": "proposed_credit_limit",
+      "spearman_correlation_with_fraud_label": 0.057387284777175,
+      "observations": 1000000
+    },
+    {
+      "feature": "income",
+      "spearman_correlation_with_fraud_label": 0.04958344985297433,
+      "observations": 1000000
+    },
+    {
+      "feature": "current_address_months_count",
+      "spearman_correlation_with_fraud_label": 0.04850509764555973,
+      "observations": 1000000
+    },
+    {
+      "feature": "prev_address_months_count",
+      "spearman_correlation_with_fraud_label": -0.046256661536867916,
+      "observations": 1000000
+    },
+    {
+      "feature": "date_of_birth_distinct_emails_4w",
+      "spearman_correlation_with_fraud_label": -0.04563930519731255,
+      "observations": 1000000
+    },
+    {
+      "feature": "name_email_similarity",
+      "spearman_correlation_with_fraud_label": -0.03728264474118925,
+      "observations": 1000000
+    },
+    {
+      "feature": "device_distinct_emails_8w",
+      "spearman_correlation_with_fraud_label": 0.036547645199037956,
+      "observations": 1000000
+    },
+    {
+      "feature": "bank_branch_count_8w",
+      "spearman_correlation_with_fraud_label": -0.03224250056694833,
+      "observations": 1000000
+    },
+    {
+      "feature": "intended_balcon_amount",
+      "spearman_correlation_with_fraud_label": -0.01795433605642484,
+      "observations": 1000000
+    },
+    {
+      "feature": "velocity_6h",
+      "spearman_correlation_with_fraud_label": -0.016496520548854792,
+      "observations": 1000000
+    }
+  ]
+}

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Aaron O'Connell - data analytics, fraud strategy and product insights portfolio.">
+<title>Aaron O'Connell | Data Analytics Portfolio</title>
+<style>
+:root{--ink:#17211f;--muted:#5d6b67;--paper:#f5f6f2;--white:#fff;--accent:#b8f36b;--green:#173f35;--line:#dce3dc;--soft:#eaf0e8}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.6}
+a{color:inherit}.wrap{width:min(1120px,calc(100% - 40px));margin:auto}
+header{background:var(--paper);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:10}
+.nav{min-height:76px;display:flex;align-items:center;justify-content:space-between;gap:24px}.brand{font-weight:800;letter-spacing:-.04em;font-size:1.08rem;text-decoration:none}.brand span{color:#477a40}.navlinks{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.navlinks a{font-size:.9rem;text-decoration:none;padding:9px 13px;border:1px solid transparent;color:var(--muted)}.navlinks a:hover,.navlinks a.active{color:var(--ink);border-color:var(--line);background:#fff}.navlinks .contact{background:var(--green);color:#fff;border-color:var(--green)}
+main{min-height:70vh}.hero{padding:82px 0 68px;background:var(--green);color:#fff;position:relative;overflow:hidden}.hero:after{content:"";position:absolute;width:430px;height:430px;border:1px solid #ffffff20;border-radius:50%;right:-80px;top:-170px;box-shadow:0 0 0 55px #ffffff08,0 0 0 110px #ffffff06;pointer-events:none}.eyebrow{text-transform:uppercase;letter-spacing:.16em;font-size:.75rem;font-weight:750;color:var(--accent)}h1{font-size:clamp(2.7rem,6vw,5.2rem);line-height:1.02;letter-spacing:-.065em;max-width:820px;margin:18px 0 24px}.hero p{font-size:1.15rem;max-width:720px;color:#e1ebe5;margin:0 0 28px}.actions{display:flex;gap:12px;flex-wrap:wrap}.btn{display:inline-block;text-decoration:none;font-weight:750;padding:12px 17px;border:1px solid #ffffff70}.btn.primary{background:var(--accent);color:var(--ink);border-color:var(--accent)}.btn.secondary{color:#fff}.section{padding:68px 0}.section-head{display:flex;justify-content:space-between;gap:24px;align-items:end;margin-bottom:28px}.kicker{font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;font-weight:800;color:#477a40}.section h2{font-size:clamp(2rem,4vw,3rem);letter-spacing:-.055em;line-height:1.1;margin:8px 0 0}.intro{max-width:740px;color:var(--muted);font-size:1.05rem}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.card{background:var(--white);border:1px solid var(--line);padding:24px;min-height:200px}.card .number{font-size:.8rem;color:#477a40;font-weight:800;letter-spacing:.1em}.card h3{font-size:1.2rem;letter-spacing:-.025em;margin:15px 0 8px}.card p{color:var(--muted);margin:0}.split{display:grid;grid-template-columns:1.1fr .9fr;gap:44px;align-items:start}.copy p{color:var(--muted);margin:0 0 16px}.statgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.stat{padding:21px;background:var(--soft);border-left:3px solid #477a40}.stat strong{display:block;font-size:2rem;letter-spacing:-.06em;line-height:1.2}.stat span{font-size:.88rem;color:var(--muted)}.taglist{display:flex;gap:8px;flex-wrap:wrap;margin-top:20px}.tag{border:1px solid var(--line);background:#fff;padding:7px 10px;font-size:.85rem;color:#42514c}.home-experience{background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.home-experience-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:0 32px}
+.home-role{display:grid;grid-template-columns:145px 1fr;gap:18px;padding:23px 0;border-top:1px solid var(--line)}
+.home-role:first-child,.home-role:nth-child(2){border-top:0}
+.home-role .role-date{font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;color:#477a40;font-weight:800;padding-top:4px}
+.home-role h3{margin:0 0 5px;font-size:1.08rem;letter-spacing:-.02em}
+.home-role .company{font-size:.9rem;font-weight:700;color:var(--muted);margin-bottom:8px}
+.home-role p{margin:0;color:var(--muted);font-size:.94rem}
+.experience-link{display:inline-block;margin-top:24px;font-weight:800;text-decoration:none;border-bottom:1px solid #477a40;padding-bottom:4px}
+@media(max-width:760px){.home-experience-grid{grid-template-columns:1fr}.home-role:first-child,.home-role:nth-child(2){border-top:1px solid var(--line)}.home-role{grid-template-columns:1fr;gap:4px}.home-role .role-date{padding-top:0}}
+.projects{background:#edf1eb}.project-card{display:flex;flex-direction:column;background:#fff;border:1px solid var(--line);padding:24px;min-height:275px}.project-card .label{font-size:.75rem;text-transform:uppercase;letter-spacing:.12em;font-weight:800;color:#477a40}.project-card h3{font-size:1.35rem;line-height:1.2;margin:14px 0 10px}.project-card p{color:var(--muted);margin:0 0 20px}.project-card a{margin-top:auto;text-decoration:none;font-weight:800;border-bottom:1px solid #477a40;padding-bottom:3px;width:max-content}.project-card .soon{font-size:.8rem;color:var(--muted);margin-top:auto}.experience{border-top:1px solid var(--line);padding:19px 0;display:grid;grid-template-columns:210px 1fr;gap:24px}.experience:first-of-type{border-top:0}.experience .date{font-size:.84rem;color:var(--muted)}.experience h3{margin:0 0 5px;font-size:1.1rem}.experience p{margin:0;color:var(--muted)}.contact-band{background:var(--accent);padding:48px 0}.contact-inner{display:flex;justify-content:space-between;align-items:center;gap:24px}.contact-inner h2{font-size:clamp(1.8rem,4vw,2.8rem);letter-spacing:-.05em;margin:0}.contact-inner p{margin:7px 0 0;color:#34452e}.contact-inner a{background:var(--ink);color:#fff;text-decoration:none;padding:13px 18px;font-weight:750;white-space:nowrap}footer{padding:24px 0;color:var(--muted);font-size:.85rem}.page{display:none}.page.active{display:block}.page-title{padding:62px 0 35px;background:var(--green);color:white}.page-title h1{font-size:clamp(2.5rem,5vw,4rem);margin:10px 0}.page-title p{color:#dce9e1;max-width:720px}.dashboard-list{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}.dash-placeholder{border:1px dashed #9baa9f;background:#fff;padding:26px;min-height:220px}.dash-placeholder h3{margin-top:0}.dash-placeholder p{color:var(--muted)}.dash-placeholder a{font-weight:750;color:#315e39}
+@media(max-width:760px){.nav{align-items:flex-start;padding:16px 0;flex-direction:column;gap:10px}.navlinks{gap:4px}.navlinks a{padding:8px 9px}.hero{padding:60px 0}.grid{grid-template-columns:1fr}.split{grid-template-columns:1fr;gap:28px}.section{padding:48px 0}.section-head{display:block}.experience{grid-template-columns:1fr;gap:5px}.contact-inner{align-items:flex-start;flex-direction:column}.dashboard-list{grid-template-columns:1fr}}
+</style>
+
+<style>
+/* Stack the three professional impact metrics vertically. */
+.statgrid {
+  display: grid !important;
+  grid-template-columns: 1fr !important;
+}
+</style>
+
+</head>
+<body>
+<header><div class="wrap nav">
+<a class="brand" href="#about" data-page="about">AOC<span>.</span></a>
+<nav class="navlinks" aria-label="Main navigation">
+<a href="#about" data-page="about" class="active">About</a>
+<a href="#projects" data-page="projects">Projects & dashboards</a>
+<a href="./fpl-analysis.html">FPL Analysis ↗</a>
+<a href="./baf-metric-explorer.html">Fraud Analysis ↗</a>
+<a href="#experience" data-page="experience">Experience</a>
+<a href="#contact" data-page="contact" class="contact">Get in touch ↗</a>
+</nav></div></header>
+<main>
+<section id="about" class="page active">
+<div class="hero"><div class="wrap">
+<div class="eyebrow">Data analytics · Fraud strategy · Product insights</div>
+<h1>Turning complex data into better decisions.</h1>
+<p>I’m Aaron O’Connell, a Dublin-based Senior Data Analyst with 7 years of experience across fraud prevention, risk analytics and business intelligence. I use data to uncover problems, measure what matters and help teams build safer, smoother customer experiences.</p>
+<div class="actions"><a class="btn primary" href="#projects" data-page="projects">Explore my projects ↗</a><a class="btn secondary" href="mailto:oconnell.aaron@gmail.com">Contact me</a></div>
+</div></div>
+<div class="section"><div class="wrap split">
+<div class="copy"><div class="kicker">About me</div><h2>Analytical thinking, commercial context.</h2>
+<p>My work sits at the intersection of data, fraud and product. I investigate customer behaviour and emerging abuse patterns, assess the performance of risk controls, and turn findings into practical recommendations for product, data science and operational teams.</p>
+<p>I’m particularly interested in the balance between preventing financial loss and reducing unnecessary friction for genuine customers. Good analysis should do more than explain what happened: it should help teams decide what to change, how to measure the impact and where to focus next.</p>
+<p>This portfolio is a home for independent projects using public datasets, with a focus on clear analysis, useful visualisations and the decisions the evidence can support.</p>
+<div class="taglist"><span class="tag">SQL</span><span class="tag">Python</span><span class="tag">Tableau</span><span class="tag">Looker</span><span class="tag">Risk analytics</span><span class="tag">Product insights</span></div>
+</div>
+<div><div class="statgrid">
+<div class="stat"><strong>£6m+</strong><span>Fraud losses reduced through product improvements</span></div>
+<div class="stat"><strong>8%</strong><span>Reduction in false-positive rate after model retraining</span></div>
+<div class="stat"><strong>£9m</strong><span>Annual revenue enabled by reducing friction for genuine customers</span></div>
+
+</div><p style="font-size:.82rem;color:var(--muted);margin-top:12px">Figures are taken from my professional experience as described in my CV.</p></div>
+</div></div>
+<div class="section home-experience"><div class="wrap">
+<div class="section-head"><div><div class="kicker">Career experience</div><h2>Seven years turning risk data into action.</h2></div><p class="intro">From hands-on fraud investigation to senior data analysis, my experience combines technical analysis with a practical understanding of customer behaviour, operational risk and product outcomes.</p></div>
+<div class="home-experience-grid">
+<div class="home-role"><div class="role-date">Mar 2023 - Present</div><div><h3>Senior Fraud Data Analyst</h3><div class="company">Flutter plc</div><p>Lead data-led fraud prevention initiatives, identify emerging abuse patterns, improve reporting and translate analysis into product and risk decisions. Work contributed to £6m+ in reduced losses and an 8% lower false-positive rate.</p></div></div>
+<div class="home-role"><div class="role-date">Oct 2021 - Mar 2023</div><div><h3>Fraud Investigator</h3><div class="company">Meta Fintech</div><p>Built fraud policies, operational procedures and monitoring dashboards, partnering with Data Science and Data Engineering on policy design and data-pipeline improvements.</p></div></div>
+<div class="home-role"><div class="role-date">Jan 2019 - Sep 2021</div><div><h3>Fraud Data Analyst</h3><div class="company">Paddy Power Betfair</div><p>Delivered KPI reporting and dashboards for fraud management and senior stakeholders, using large datasets to identify emerging risks and improve detection.</p></div></div>
+<div class="home-role"><div class="role-date">2016 - 2018</div><div><h3>Loss Prevention</h3><div class="company">Paddy Power</div><p>Developed hands-on experience in fraud investigation, loss prevention operations, reporting and team leadership.</p></div></div>
+</div>
+<a class="experience-link" href="#experience" data-page="experience">View full experience & education ↗</a>
+</div></div>
+<div class="section projects"><div class="wrap">
+<div class="section-head"><div><div class="kicker">Selected work</div><h2>Projects built around real questions.</h2></div><p class="intro">I’m building a collection of data analysis projects using public data. The aim is to show the full journey from question and methodology to insight and recommendation.</p></div>
+<div class="grid">
+<article class="project-card"><div class="label">01 · FPL ANALYTICS</div><h3>Fantasy Premier League: what drives points?</h3><p>Explore captaincy returns, player value, set-piece responsibility and team ELO using 2025-26 Fantasy Premier League data.</p><a href="./fpl-analysis.html">Explore FPL analysis ↗</a></article>
+
+<article class="project-card"><div class="label">02 · FRAUD ANALYTICS</div><h3>Bank account opening fraud: finding signals and testing models</h3><p>I explored fraud patterns across application, identity, device and behavioural signals using the Feedzai BAF dataset, then trained and tested three models to compare their performance.</p><a href="./baf-metric-explorer.html">Explore fraud analysis ↗</a></article>
+</div></div></div>
+</section>
+
+<section id="projects" class="page">
+<div class="page-title"><div class="wrap"><div class="eyebrow">Portfolio</div><h1>Projects & dashboards</h1><p>Interactive work built with public datasets. Each project will explain the question, data source, analytical approach, key findings and limitations.</p></div></div>
+<div class="section"><div class="wrap"><div class="dashboard-list">
+<article class="project-card"><div class="label">01 · FPL ANALYTICS</div><h3>Fantasy Premier League: what drives points?</h3><p>Explore captaincy returns, player value, bonus-point correlations, set-piece responsibility and team ELO. Includes a historical captaincy forecasting backtest.</p><a href="./fpl-analysis.html">View analysis ↗</a></article>
+
+<article class="project-card"><div class="label">02 · Fraud analytics</div><h3>Bank account opening fraud</h3><p>I explored fraud patterns in the Feedzai BAF dataset, then trained and tested Logistic Regression, CatBoost and LightGBM models. The analysis compares their results and sets out what I would investigate before using real banking data.</p><a href="./baf-metric-explorer.html">View fraud analysis ↗</a></article>
+</div></div></div>
+</section>
+
+<section id="experience" class="page">
+<div class="page-title"><div class="wrap"><div class="eyebrow">Background</div><h1>Experience that connects risk and product.</h1><p>My career has progressed from hands-on loss prevention to fraud analytics, data-led controls and product-focused improvements.</p></div></div>
+<div class="section"><div class="wrap">
+<div class="experience"><div class="date">Mar 2023 - Present</div><div><h3>Senior Fraud Data Analyst · Flutter plc</h3><p>Lead data-driven fraud prevention initiatives; use SQL and Python to identify trends and abuse patterns; improve reporting metrics; and translate analysis into product and risk decisions.</p></div></div>
+<div class="experience"><div class="date">Oct 2021 - Mar 2023</div><div><h3>Fraud Investigator · Meta Fintech</h3><p>Created fraud policies, operational procedures and dashboards, and collaborated with Data Science and Data Engineering teams on policy design and data-pipeline improvements.</p></div></div>
+<div class="experience"><div class="date">Jan 2019 - Sep 2021</div><div><h3>Fraud Data Analyst · Paddy Power Betfair</h3><p>Delivered KPI reporting and dashboards for fraud management and senior stakeholders, using data to identify emerging risks and improve detection.</p></div></div>
+<div class="experience"><div class="date">2016 - 2018</div><div><h3>Loss Prevention · Paddy Power</h3><p>Built practical experience in fraud investigation, operational delivery, reporting and team leadership.</p></div></div>
+<div style="margin-top:34px"><div class="kicker">Education</div><h3>Higher Diploma in Science in Data Analytics</h3><p class="intro">Dublin Business School · First Class Honours · Modules included machine learning, statistics, big data management, data visualisation and storytelling.</p><h3 style="margin-top:22px">Professional Diploma</h3><p class="intro">University College Dublin · Merit · Project management across Agile, Kanban, Waterfall and CPM.</p></div>
+</div></div>
+</section>
+
+<section id="contact" class="page">
+<div class="page-title"><div class="wrap"><div class="eyebrow">Contact</div><h1>Let’s talk data.</h1><p>For roles, collaboration or questions about a project, feel free to get in touch.</p></div></div>
+<div class="section"><div class="wrap"><div class="card" style="max-width:700px"><h2 style="font-size:1.5rem;margin-top:0">Aaron O’Connell</h2><p>Dublin, Ireland</p><p><strong>Email:</strong> <a href="mailto:oconnell.aaron@gmail.com">oconnell.aaron@gmail.com</a></p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/aaron-o-connell/" target="_blank" rel="noopener noreferrer">https://www.linkedin.com/in/aaron-o-connell/</a>
+</section>
+
+</main>
+<div class="contact-band"><div class="wrap contact-inner"><div><h2>Good analysis should lead somewhere.</h2><p>Clear questions. Reliable evidence. Practical recommendations.</p></div><a href="mailto:oconnell.aaron@gmail.com">Email Aaron ↗</a></div></div>
+<footer><div class="wrap">© <span id="year"></span> Aaron O’Connell · Data analytics portfolio</div></footer>
+<script>
+const pages=[...document.querySelectorAll('.page')];
+function showPage(name, updateHash=true){
+ const target=document.getElementById(name)||document.getElementById('about');
+ pages.forEach(p=>p.classList.toggle('active',p===target));
+ document.querySelectorAll('[data-page]').forEach(a=>a.classList.toggle('active',a.dataset.page===target.id));
+ if(updateHash) history.pushState(null,'','#'+target.id);
+ window.scrollTo({top:0,behavior:'smooth'});
+}
+document.querySelectorAll('[data-page]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();showPage(a.dataset.page)}));
+window.addEventListener('popstate',()=>showPage(location.hash.slice(1)||'about',false));
+if(location.hash) showPage(location.hash.slice(1),false);
+document.getElementById('year').textContent=new Date().getFullYear();
+</script>
+</body>
+</html>
