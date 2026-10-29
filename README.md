@@ -1,44 +1,61 @@
-# Aaron O'Connell - Data Analytics Portfolio
+# Aaron O'Connell | Data Analytics Portfolio
 
-## Files
-- `index.html` - responsive portfolio homepage with About, Projects & Dashboards, Experience, and Contact views.
-- `dashboards/football.html` - starter project page for a public-data football dashboard.
+I'm a Senior Fraud Data Analyst with experience in fraud prevention, risk analytics and business intelligence across fintech and online betting.
 
-## Preview locally
-Open `index.html` in a web browser. Keep the `dashboards` folder beside it so project links work.
+This portfolio showcases how I use data to investigate problems, test hypotheses and develop insights that support business decisions. My work combines exploratory analysis, statistical techniques, machine learning and data visualisation, with a focus on practical outcomes.
 
-## Publish online
-A straightforward option is GitHub Pages:
-1. Create a GitHub repository for the portfolio.
-2. Upload `index.html` and the complete `dashboards` folder.
-3. In the repository settings, open **Pages** and choose the branch/folder to publish.
-4. Open the generated site address to check navigation and project links.
+## Projects
 
-You can also upload the files to any static website host. No server-side code is required.
+### 1. Fantasy Premier League Analysis
 
-## Before publishing
-- Add your LinkedIn profile URL.
-- Decide whether you want your email address publicly visible.
-- Replace the football dashboard placeholder with your completed analysis and data-source details.
-- Add each new dashboard as its own HTML file in `dashboards/`, then link it from the Projects page in `index.html`.
-- Check all claims, links and responsive layouts on desktop and mobile.
+**Focus:** Sports analytics, exploratory data analysis and visualisation
 
-The CV-based impact metrics are reproduced from the supplied CV. The dashboard pages are explicitly marked as templates until analysis is added.
+An analysis of 2025/26 Fantasy Premier League data, exploring the factors associated with player performance and value.
 
+The project examines:
+- Captaincy returns and player performance
+- Player value relative to price
+- Set-piece responsibilities and bonus-point patterns
+- Relationships between player statistics and total points
+- The relationship between team strength and FPL performance
 
-## Bank Account Fraud Metric Explorer
+[**Explore the FPL analysis →**](./fpl-analysis.html)
 
-Open `baf-metric-explorer.html` in a browser, select the BAF `Base.csv` file, and explore monthly fraud prevalence, feature-level comparisons, segment rates, and documented sentinel-value checks. The CSV is processed locally in the browser and is not uploaded. The page uses Plotly.js and Papa Parse from public CDNs, so an internet connection is required for those libraries.
+### 2. Bank Account Opening Fraud Analysis
 
-## Python-powered BAF metric explorer
+**Focus:** Fraud analytics, machine learning and customer experience
 
-The dashboard no longer needs the raw dataset in the HTML. Run the analysis locally against the downloaded BAF CSV to produce a small aggregate JSON file:
+Using the Feedzai Bank Account Fraud (BAF) dataset, I investigated patterns associated with fraudulent bank account applications and trained and tested three classification models.
 
-```bash
-pip install pandas numpy
-python analyze_baf.py Base.csv
-```
+The project covers:
+- Exploratory analysis of application, identity, device and behavioural signals
+- Fraud-rate comparisons across different customer and application characteristics
+- Model testing using Logistic Regression, CatBoost and LightGBM
+- Comparison of model performance on a held-out test period
+- Considerations for improving detection while limiting false positives and customer friction
 
-This creates `baf-summary.json` with overview metrics, monthly fraud rates, grouped feature summaries, segment rankings, sentinel-value checks and numeric correlations. It exports no application-level rows. Keep `baf-summary.json` beside `baf-metric-explorer.html`.
+The analysis also outlines the next steps I would take with real banking data, including investigating additional features, estimating potential savings and costs, and assessing the operational impact of introducing a model.
 
-To preview locally, run `python -m http.server 8000` in the folder and open `http://localhost:8000/`. For GitHub Pages, commit the HTML and generated JSON (not the original CSV). Since the source dataset is synthetic, label it as such in the portfolio.
+The dataset is synthetic, so the findings should not be treated as evidence of performance in a live banking environment.
+
+[**Explore the fraud analysis →**](./baf-metric-explorer.html)
+
+## Skills and tools
+
+- **Data analysis:** Python, pandas, SQL and exploratory data analysis
+- **Machine learning:** Scikit-learn, classification models, model evaluation and feature importance
+- **Data visualisation:** Interactive HTML dashboards, Tableau and business reporting
+- **Fraud and risk:** Fraud pattern analysis, false-positive reduction, risk controls and customer friction
+- **Business analysis:** Translating findings into recommendations, assessing trade-offs and communicating with stakeholders
+
+## Professional background
+
+My experience spans fraud analytics, investigations and operational risk. I have worked with product, data science and engineering teams to identify fraud patterns, improve risk controls and make data-led decisions.
+
+In previous roles, my work has contributed to more than £6 million in reduced losses, an 8% reduction in false positives through model improvements, and reporting and alerting initiatives that contributed to a 70% reduction in fraud.
+
+## About this portfolio
+
+The projects use public datasets and are intended to demonstrate my analytical approach, technical skills and ability to connect data analysis with business decisions.
+
+**Contact:** [Connect with me on LinkedIn](https://www.linkedin.com/in/aaron-o-connell/)
