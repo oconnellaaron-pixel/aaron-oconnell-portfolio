@@ -40,10 +40,31 @@ The dataset is synthetic, so the findings should not be treated as evidence of p
 
 [**Explore the fraud analysis →**](./baf-metric-explorer.html)
 
+### 3. IEEE-CIS Fraud Analytics | dbt & DuckDB
+
+**Focus:** Analytics engineering, SQL transformations and data quality
+
+Using the IEEE-CIS Fraud Detection dataset, I built an end-to-end analytics engineering project using dbt and DuckDB. The aim was to turn raw transaction and identity data into structured, tested models that can support fraud analysis.
+
+The project covers:
+- Building a modular dbt pipeline using staging, intermediate and mart models
+- Transforming transaction and identity data using SQL and reusable Jinja macros
+- Developing incremental models to process new and updated transactions
+- Using dbt snapshots to track historical changes to transaction records
+- Implementing data quality tests, including uniqueness, relationships, accepted values and custom SQL assertions
+- Analysing identity and device data availability and its impact on fraud reporting
+
+I also used Python to support data loading, simulate incoming transactions and run supporting SQL analyses.
+
+The project demonstrates how I approach building maintainable data pipelines, validating transformations and producing reliable datasets for downstream analysis.
+
+[**Explore the dbt project →**](./fraud-analytics-dbt.html)
+
 ## Skills and tools
 
 - **Data analysis:** Python, pandas, SQL and exploratory data analysis
 - **Machine learning:** Scikit-learn, classification models, model evaluation and feature importance
+- **Analytics engineering:** dbt, DuckDB, SQL transformations, incremental models, snapshots and data quality testing
 - **Data visualisation:** Interactive HTML dashboards, Tableau and business reporting
 - **Fraud and risk:** Fraud pattern analysis, false-positive reduction, risk controls and customer friction
 - **Business analysis:** Translating findings into recommendations, assessing trade-offs and communicating with stakeholders
