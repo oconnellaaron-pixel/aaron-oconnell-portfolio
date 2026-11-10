@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Aaron O'Connell's fraud analytics engineering project: a DuckDB and dbt warehouse for transaction, identity and device analysis.">
+<title>Building a Fraud Analytics Warehouse | Aaron O'Connell</title>
+<style>
+:root{--ink:#17211f;--muted:#5d6b67;--paper:#f5f6f2;--white:#fff;--accent:#b8f36b;--green:#173f35;--line:#dce3dc;--soft:#eaf0e8}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.6}
+a{color:inherit}.wrap{width:min(1120px,calc(100% - 40px));margin:auto}
+header{background:var(--paper);border-bottom:1px solid var(--line)}.nav{min-height:76px;display:flex;align-items:center;justify-content:space-between;gap:24px}.brand{font-weight:800;letter-spacing:-.04em;font-size:1.08rem;text-decoration:none}.brand span{color:#477a40}.navlinks{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.navlinks a{font-size:.9rem;text-decoration:none;padding:9px 13px;border:1px solid transparent;color:var(--muted)}.navlinks a:hover{color:var(--ink);border-color:var(--line);background:#fff}.navlinks .contact{background:var(--green);color:#fff;border-color:var(--green)}
+.hero{padding:76px 0 64px;background:var(--green);color:#fff;position:relative;overflow:hidden}.hero:after{content:"";position:absolute;width:430px;height:430px;border:1px solid #ffffff20;border-radius:50%;right:-80px;top:-170px;box-shadow:0 0 0 55px #ffffff08,0 0 0 110px #ffffff06;pointer-events:none}.eyebrow,.kicker{text-transform:uppercase;letter-spacing:.15em;font-size:.75rem;font-weight:800;color:#477a40}.hero .eyebrow{color:var(--accent)}h1{font-size:clamp(2.6rem,6vw,4.8rem);line-height:1.02;letter-spacing:-.065em;max-width:850px;margin:18px 0 22px}.hero p{font-size:1.12rem;max-width:760px;color:#e1ebe5;margin:0 0 25px}.actions{display:flex;gap:12px;flex-wrap:wrap}.btn{display:inline-block;text-decoration:none;font-weight:750;padding:11px 16px;border:1px solid #ffffff70}.btn.primary{background:var(--accent);color:var(--ink);border-color:var(--accent)}.btn.secondary{color:#fff}
+.section{padding:64px 0}.section h2{font-size:clamp(1.9rem,4vw,2.8rem);letter-spacing:-.055em;line-height:1.1;margin:8px 0 18px}.intro{max-width:780px;color:var(--muted);font-size:1.04rem}.split{display:grid;grid-template-columns:1.05fr .95fr;gap:42px;align-items:start}.copy p{color:var(--muted);margin:0 0 16px}.card{background:var(--white);border:1px solid var(--line);padding:23px}.statgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.stat{padding:19px;background:var(--soft);border-left:3px solid #477a40}.stat strong{display:block;font-size:1.9rem;letter-spacing:-.06em;line-height:1.2}.stat span{font-size:.85rem;color:var(--muted)}.taglist{display:flex;gap:8px;flex-wrap:wrap;margin-top:20px}.tag{border:1px solid var(--line);background:#fff;padding:7px 10px;font-size:.84rem;color:#42514c}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.step{background:#fff;border:1px solid var(--line);padding:22px}.step .num{font-size:.78rem;color:#477a40;font-weight:850;letter-spacing:.1em}.step h3{margin:10px 0 7px;font-size:1.12rem}.step p{margin:0;color:var(--muted);font-size:.94rem}.soft-section{background:#edf1eb;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.metric-wrap{display:grid;grid-template-columns:1fr 1fr;gap:18px}.metric-card{background:#fff;border:1px solid var(--line);padding:22px}.metric-card h3{margin:0 0 6px}.metric-card p{color:var(--muted);font-size:.9rem;margin:0 0 18px}.bar-row{display:grid;grid-template-columns:125px 1fr 70px;gap:10px;align-items:center;margin:13px 0;font-size:.88rem}.bar-track{height:12px;background:#e8eee7;overflow:hidden}.bar{height:100%;background:#477a40}.bar.alt{background:#b8c8b5}.bar-value{text-align:right;font-variant-numeric:tabular-nums;font-weight:750}.callout{padding:18px 20px;background:var(--soft);border-left:3px solid #477a40;color:#43514b;margin-top:18px}.table-wrap{overflow-x:auto;background:#fff;border:1px solid var(--line)}table{border-collapse:collapse;width:100%;min-width:600px;font-size:.92rem}th,td{text-align:left;padding:13px 15px;border-bottom:1px solid var(--line)}th{background:#edf1eb;font-size:.78rem;text-transform:uppercase;letter-spacing:.06em;color:#42514c}td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}.note{font-size:.84rem;color:var(--muted);margin-top:12px}.footer-band{background:var(--accent);padding:42px 0}.footer-inner{display:flex;justify-content:space-between;align-items:center;gap:24px}.footer-inner h2{font-size:clamp(1.7rem,3vw,2.5rem);letter-spacing:-.05em;margin:0}.footer-inner a{background:var(--ink);color:#fff;text-decoration:none;padding:12px 17px;font-weight:750;white-space:nowrap}footer{padding:23px 0;color:var(--muted);font-size:.85rem}
+@media(max-width:760px){.nav{align-items:flex-start;padding:16px 0;flex-direction:column;gap:8px}.navlinks{gap:3px}.navlinks a{padding:7px 8px}.hero{padding:56px 0}.section{padding:46px 0}.split,.grid,.metric-wrap{grid-template-columns:1fr}.statgrid{grid-template-columns:1fr 1fr}.bar-row{grid-template-columns:105px 1fr 62px}.footer-inner{align-items:flex-start;flex-direction:column}}
+
+.pipeline-shell{background:#fff;border:1px solid var(--line);padding:24px;margin-top:28px}
+.pipeline-lane{display:grid;grid-template-columns:1fr 1fr;gap:12px;position:relative}
+.pipeline-lane.three-nodes{grid-template-columns:repeat(3,minmax(0,1fr))}
+.pipeline-label{grid-column:1/-1;font-size:.72rem;letter-spacing:.12em;font-weight:850;color:#477a40}
+.pipeline-node{border:1px solid var(--line);border-left:4px solid #7e9b78;background:#f8faf7;padding:14px;min-width:0}
+.pipeline-node strong{display:block;font-size:.94rem;overflow-wrap:anywhere}
+.pipeline-node small{display:block;color:var(--muted);font-size:.82rem;margin-top:4px;line-height:1.4}
+.source-node{border-left-color:#a8b7a3;background:#f4f6f2}
+.main-node{border-left-color:#477a40;background:#edf3eb}
+.mart-node{border-left-color:#173f35;background:#e7efe8}
+.pipeline-arrow{text-align:center;color:#477a40;height:52px;display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1}
+.pipeline-arrow span{font-size:1.45rem;font-weight:800}
+.pipeline-arrow small{font-size:.72rem;color:var(--muted);margin-top:3px}
+.pipeline-foot{display:grid;grid-template-columns:1fr 1fr;gap:12px;border-top:1px solid var(--line);margin-top:22px;padding-top:18px}
+.pipeline-foot div{background:var(--soft);padding:13px}
+.pipeline-foot b,.pipeline-foot span{display:block}
+.pipeline-foot b{font-size:.86rem}
+.pipeline-foot span{font-size:.8rem;color:var(--muted);margin-top:4px}
+.code-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.code-card{background:#fff;border:1px solid var(--line);padding:18px;min-width:0}
+.code-head{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.code-head span{font-size:.72rem;letter-spacing:.1em;font-weight:850;color:#477a40}
+.code-head code{font-size:.78rem;color:var(--muted);overflow-wrap:anywhere}
+.code-card p{color:var(--muted);font-size:.9rem;min-height:76px;margin:12px 0}
+.code-card pre{background:#17211f;color:#e8efe9;padding:16px;overflow:auto;max-height:360px;font-size:.78rem;line-height:1.55;border-radius:2px;margin:0}
+.code-card pre code{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;white-space:pre}
+.callout code,.note code{background:#e6ece5;padding:1px 4px}
+@media(max-width:760px){.pipeline-lane,.pipeline-lane.three-nodes,.pipeline-foot,.code-grid{grid-template-columns:1fr}.pipeline-label{grid-column:1}.code-card p{min-height:0}.pipeline-arrow{height:38px}}
+
+</style>
+</head>
+<body>
+<header><div class="wrap nav">
+<a class="brand" href="./index.html">AOC<span>.</span></a>
+<nav class="navlinks" aria-label="Project navigation">
+<a href="./index.html#about">Portfolio home</a><a href="./index.html#projects">Other projects</a><a href="#pipeline">Pipeline & code</a><a class="contact" href="mailto:oconnell.aaron@gmail.com">Get in touch ↗</a>
+</nav></div></header>
+<main>
+<section class="hero"><div class="wrap">
+<div class="eyebrow">Fraud analytics · SQL · dbt · DuckDB</div>
+<h1>Building a fraud analytics warehouse.</h1>
+<p>I built this project to take transaction-level fraud data beyond a collection of raw files. I used dbt and DuckDB to create a repeatable SQL pipeline, investigate identity and device coverage, and produce a tested reporting layer that makes the underlying patterns easier to work with.</p>
+<div class="actions"><a class="btn primary" href="#approach">How I built it ↓</a><a class="btn secondary" href="./index.html#projects">Back to my projects ↗</a></div>
+</div></section>
+<section class="section"><div class="wrap split">
+<div class="copy"><div class="kicker">The project</div><h2>From raw transactions to something I can analyse.</h2>
+<p>I wanted to build a small but realistic analytics engineering workflow, rather than just write a few queries against a CSV. The project takes transaction data and supporting identity and device information through a set of dbt models, with a final mart designed for fraud analysis.</p>
+<p>I used SQL for the transformations, DuckDB as the local warehouse and dbt to organise the models, manage dependencies and run data quality checks. I also added incremental processing and snapshots so I could work through how a pipeline handles new records and changes to existing ones.</p>
+<p>The main focus is the analytical foundation: understanding what information is available, making the transformations repeatable and checking that the outputs are reliable. This is a fraud analytics warehouse, not a trained machine-learning classifier.</p>
+<div class="taglist"><span class="tag">SQL</span><span class="tag">dbt</span><span class="tag">DuckDB</span><span class="tag">Jinja</span><span class="tag">Python</span><span class="tag">Data quality testing</span><span class="tag">Incremental models</span></div></div>
+<div><div class="statgrid">
+<div class="stat"><strong>590,540</strong><span>Transactions in the analysis</span></div><div class="stat"><strong>24.42%</strong><span>Transactions with identity information</span></div><div class="stat"><strong>23.84%</strong><span>Transactions with populated device types</span></div><div class="stat"><strong>30 / 30</strong><span>Resources passed in the recorded dbt build</span></div>
+</div><p class="note">Figures are from the project outputs captured during development. The 30 successful resources include models, tests and a snapshot.</p></div>
+</div></section>
+<section id="approach" class="section soft-section"><div class="wrap">
+<div class="kicker">How I structured it</div><h2>A layered dbt project.</h2><p class="intro">I split the transformations into stages so each model has a clear job. That makes the SQL easier to maintain and gives me a straightforward way to trace a reporting figure back through the pipeline.</p>
+<div class="grid" style="margin-top:26px">
+<article class="step"><div class="num">01 · SOURCES</div><h3>Raw data</h3><p>I brought the transaction, identity and device data into DuckDB as source tables. This gives the project a consistent starting point for the transformations.</p></article>
+<article class="step"><div class="num">02 · STAGING</div><h3>Clean and standardise</h3><p>I used staging models to select and standardise the fields needed downstream, including transaction identifiers and identity attributes.</p></article>
+<article class="step"><div class="num">03 · INTERMEDIATE</div><h3>Join and shape the data</h3><p>I separated the more involved joins and analysis logic into intermediate models, including transaction identity, identity fraud analysis and device fraud analysis.</p></article>
+<article class="step"><div class="num">04 · MART</div><h3>Reporting layer</h3><p>I brought the outputs together in a fraud performance mart, with transaction volumes, fraudulent transaction counts, fraud rates and average transaction amounts.</p></article>
+</div><div class="callout"><strong>Why I used layers:</strong> I can change or test one part of the pipeline without burying all the logic in a single query. The dbt dependency graph also makes it easier to see how the reporting model is built.</div>
+</div></section>
+
+<section id="pipeline" class="section">
+  <div class="wrap">
+    <div class="kicker">How the code fits together</div>
+    <h2>A pipeline I can follow from source to reporting.</h2>
+    <p class="intro">I split the work into staging, intermediate and mart models. The main reporting path joins transactions to identity data, then feeds the fraud performance mart. I also built separate incremental and snapshot examples to practise handling changing data.</p>
+    <div class="pipeline-shell" aria-label="dbt model lineage diagram">
+      <div class="pipeline-lane">
+        <div class="pipeline-label">RAW SOURCES</div>
+        <div class="pipeline-node source-node"><strong>raw_transactions</strong><small>Transaction records and fraud labels</small></div>
+        <div class="pipeline-node source-node"><strong>raw_identity</strong><small>Device and identity attributes</small></div>
+      </div>
+      <div class="pipeline-arrow"><span>↓</span><small>source()</small></div>
+      <div class="pipeline-lane">
+        <div class="pipeline-label">STAGING MODELS</div>
+        <div class="pipeline-node"><strong>stg_transactions</strong><small>Select transaction fields</small></div>
+        <div class="pipeline-node"><strong>stg_identity</strong><small>Keep device and ID attributes</small></div>
+      </div>
+      <div class="pipeline-arrow"><span>↓</span><small>ref() · LEFT JOIN</small></div>
+      <div class="pipeline-lane">
+        <div class="pipeline-label">INTERMEDIATE MODEL</div>
+        <div class="pipeline-node main-node"><strong>int_transaction_identity</strong><small>Join on TransactionID · classify identity and device availability</small></div>
+      </div>
+      <div class="pipeline-arrow"><span>↓</span><small>ref()</small></div>
+      <div class="pipeline-lane three-nodes">
+        <div class="pipeline-label">ANALYSIS & MART</div>
+        <div class="pipeline-node"><strong>int_identity_fraud_analysis</strong><small>Fraud rate by identity status</small></div>
+        <div class="pipeline-node"><strong>int_device_fraud_analysis</strong><small>Fraud rate by device type</small></div>
+        <div class="pipeline-node mart-node"><strong>mart_fraud_performance</strong><small>Aggregated reporting table</small></div>
+      </div>
+      <div class="pipeline-foot">
+        <div><b>Separate practice pipeline</b><span>stg_transactions → int_transactions_incremental (merge by TransactionID)</span></div>
+        <div><b>Change history</b><span>raw simulated transactions → int_simulated_transactions and dbt snapshot (check strategy)</span></div>
+      </div>
+    </div>
+    <p class="note">The arrows show the main reporting lineage. The two analysis models and the mart each read from <code>int_transaction_identity</code>; the incremental and snapshot exercises are separate from that reporting path.</p>
+  </div>
+</section>
+<section class="section soft-section">
+  <div class="wrap">
+    <div class="kicker">A look at the SQL</div>
+    <h2>Some of the dbt code I wrote.</h2>
+    <p class="intro">These are real extracts from the project, rather than made-up examples. They show how I used Jinja, model references and incremental materialisation to keep the transformations organised.</p>
+    <div class="code-grid" style="margin-top:28px">
+
+    <article class="code-card">
+      <div class="code-head"><span>01 · REUSABLE JINJA MACRO</span><code>macros/identity_columns.sql</code></div>
+      <p>The identity source has a wide set of numbered ID fields. I used a macro to generate those select expressions in one place, instead of manually maintaining the list in the staging model.</p>
+      <pre><code>{% macro identity_attribute_columns() %}
+
+    {% set columns = [
+        &#x27;id_01&#x27;,
+        &#x27;id_02&#x27;,
+        &#x27;id_03&#x27;,
+        &#x27;id_04&#x27;,
+        &#x27;id_05&#x27;,
+        &#x27;id_06&#x27;,
+        &#x27;id_09&#x27;,
+        &#x27;id_10&#x27;,
+        &#x27;id_11&#x27;,
+        &#x27;id_12&#x27;,
+        &#x27;id_13&#x27;,
+        &#x27;id_14&#x27;,
+        &#x27;id_15&#x27;,
+        &#x27;id_16&#x27;,
+        &#x27;id_17&#x27;,
+        &#x27;id_18&#x27;,
+        &#x27;id_19&#x27;,
+        &#x27;id_20&#x27;,
+        &#x27;id_21&#x27;,
+        &#x27;id_22&#x27;,
+        &#x27;id_23&#x27;,
+        &#x27;id_24&#x27;,
+        &#x27;id_25&#x27;,
+        &#x27;id_26&#x27;,
+        &#x27;id_27&#x27;,
+        &#x27;id_28&#x27;,
+        &#x27;id_29&#x27;,
+        &#x27;id_30&#x27;,
+        &#x27;id_31&#x27;,
+        &#x27;id_32&#x27;,
+        &#x27;id_33&#x27;,
+        &#x27;id_34&#x27;,
+        &#x27;id_35&#x27;,
+        &#x27;id_36&#x27;,
+        &#x27;id_37&#x27;,
+        &#x27;id_38&#x27;
+    ] %}
+
+    {% for column in columns %}
+        , {{ column }}
+    {% endfor %}
+
+{% endmacro %}</code></pre>
+    </article>
+    <article class="code-card">
+      <div class="code-head"><span>02 · INTERMEDIATE JOIN</span><code>models/intermediate/int_transaction_identity.sql</code></div>
+      <p>This is the core join in the reporting path. I kept every transaction with a LEFT JOIN, then used CASE expressions to distinguish missing identity records from missing device data.</p>
+      <pre><code>SELECT
+
+    -- Transaction identifiers and attributes
+    t.TransactionID,
+    t.TransactionDT,
+    t.TransactionAmt,
+    t.ProductCD,
+
+    -- Fraud outcome
+    t.isFraud,
+
+    -- Identity and device attributes
+    i.DeviceType,
+    i.DeviceInfo,
+
+    -- Identity availability
+    CASE
+        WHEN i.TransactionID IS NOT NULL
+            THEN &#x27;Available&#x27;
+        ELSE &#x27;Unavailable&#x27;
+    END AS identity_status,
+
+    -- More detailed device data availability
+    CASE
+        WHEN i.TransactionID IS NULL
+            THEN &#x27;No identity record&#x27;
+
+        WHEN i.DeviceType IS NULL
+            THEN &#x27;Identity exists, device missing&#x27;
+
+        ELSE &#x27;Device information available&#x27;
+    END AS device_data_status
+
+FROM {{ ref(&#x27;stg_transactions&#x27;) }} AS t
+
+LEFT JOIN {{ ref(&#x27;stg_identity&#x27;) }} AS i
+    ON t.TransactionID = i.TransactionID</code></pre>
+    </article>
+    <article class="code-card">
+      <div class="code-head"><span>03 · INCREMENTAL MODEL</span><code>models/intermediate/int_transactions_incremental.sql</code></div>
+      <p>I configured this model to merge on TransactionID. The incremental filter uses the current maximum ID as a simple watermark for the exercise.</p>
+      <pre><code>{{
+    config(
+        materialized=&#x27;incremental&#x27;,
+        unique_key=&#x27;TransactionID&#x27;,
+        incremental_strategy=&#x27;merge&#x27;
+    )
+}}
+
+SELECT
+    TransactionID,
+    TransactionDT,
+    TransactionAmt,
+    ProductCD,
+    isFraud
+
+FROM {{ ref(&#x27;stg_transactions&#x27;) }}
+
+{% if is_incremental() %}
+
+WHERE TransactionID IN (
+    SELECT TransactionID
+    FROM {{ ref(&#x27;stg_transactions&#x27;) }}
+    WHERE TransactionID &gt;= (
+        SELECT COALESCE(MAX(TransactionID), 0)
+        FROM {{ this }}
+    )
+)
+
+{% endif %}</code></pre>
+    </article>
+    <article class="code-card">
+      <div class="code-head"><span>04 · REPORTING MART</span><code>models/marts/mart_fraud_performance.sql</code></div>
+      <p>The mart groups the joined data by identity and device availability, then calculates volumes, fraud rates and transaction values for reporting.</p>
+      <pre><code>{{
+    config(
+        materialized=&#x27;table&#x27;
+    )
+}}
+
+SELECT
+
+    -- Dimensions
+    identity_status,
+    device_data_status,
+
+    COALESCE(DeviceType, &#x27;Unknown&#x27;) AS device_type,
+
+    -- Transaction volume
+    COUNT(*) AS total_transactions,
+
+    -- Fraud volume
+    SUM(isFraud) AS fraudulent_transactions,
+
+    -- Fraud rate
+    {{ calculate_percentage(
+    &#x27;SUM(isFraud)&#x27;,
+    &#x27;COUNT(*)&#x27;,
+    2
+) }} AS fraud_rate_pct,
+
+    -- Transaction value
+    ROUND(
+        AVG(TransactionAmt),
+        2
+    ) AS average_transaction_amount,
+
+    ROUND(
+        SUM(TransactionAmt),
+        2
+    ) AS total_transaction_amount,
+
+    -- Value associated with transactions labelled as fraud
+    ROUND(
+        SUM(
+            CASE
+                WHEN isFraud = 1
+                THEN TransactionAmt
+                ELSE 0
+            END
+        ),
+        2
+    ) AS fraudulent_transaction_amount
+
+FROM {{ ref(&#x27;int_transaction_identity&#x27;) }}
+
+GROUP BY
+    identity_status,
+    device_data_status,
+    DeviceType</code></pre>
+    </article>
+    </div>
+    <div class="callout"><strong>What I wanted to learn:</strong> how to break SQL transformations into reusable dbt models, make dependencies explicit with <code>ref()</code> and <code>source()</code>, and build a pipeline that I can test and rerun.</div>
+  </div>
+</section>
+
+<section class="section"><div class="wrap">
+<div class="kicker">Making the pipeline reliable</div><h2>Incremental processing, snapshots and tests.</h2>
+<div class="grid" style="margin-top:24px">
+<article class="step"><div class="num">INCREMENTAL MODELS</div><h3>Process changes, not just the full table</h3><p>I built incremental models and tested them with a small simulated transaction feed. I inserted a new transaction and changed an existing transaction amount, then checked that the model reflected the update without losing the unchanged records.</p></article>
+<article class="step"><div class="num">SNAPSHOTS</div><h3>Keep a record of changes</h3><p>I added a dbt snapshot for the simulated transactions and changed an amount between runs. The snapshot retained the earlier version and recorded the newer version with validity timestamps.</p></article>
+<article class="step"><div class="num">REUSABLE MACROS</div><h3>Reduce repeated SQL</h3><p>I introduced a Jinja macro to generate identity attribute columns, rather than manually repeating the same transformation for each identity field.</p></article>
+<article class="step"><div class="num">DATA QUALITY TESTS</div><h3>Check the outputs automatically</h3><p>I added checks for non-null and unique transaction identifiers, accepted fraud flag values, valid fraud rates, positive transaction amounts and consistency between fraud counts and the underlying data.</p></article>
+</div>
+<div class="card" style="margin-top:20px"><div class="kicker">Recorded build result</div><h3 style="font-size:1.5rem;margin:8px 0">30 resources passed · 0 warnings · 0 errors</h3><p style="margin:0;color:var(--muted)">The captured dbt build completed successfully, running 2 incremental models, 1 snapshot, 1 table model, 5 view models and 21 data tests.</p></div>
+</div></section>
+<section class="section soft-section"><div class="wrap split">
+<div class="copy"><div class="kicker">What I took from it</div><h2>The data model is only as useful as the data behind it.</h2>
+<p>The biggest thing I found was how much information was missing from the identity and device fields. That has a direct impact on the kind of analysis I can do and how confidently I can interpret the results.</p>
+<p>Building the warehouse also gave me practical experience with dbt features that are useful in a production-style workflow: model dependencies, incremental merges, snapshots, macros and automated tests. I could test the behaviour with simulated changes and inspect the results directly in DuckDB.</p>
+<p>If I took this further, I'd focus on more detailed data profiling, monitoring coverage over time, and adding tests around the assumptions used in the fraud reporting layer. I'd also investigate why identity and device information is absent for such a large share of transactions before treating those fields as representative.</p></div>
+<div class="card"><div class="kicker">Tools and techniques</div><h3 style="margin:8px 0 12px">What I used</h3><div class="taglist" style="margin-top:0"><span class="tag">DuckDB</span><span class="tag">dbt Core</span><span class="tag">SQL</span><span class="tag">Python</span><span class="tag">Jinja</span><span class="tag">Staging models</span><span class="tag">Intermediate models</span><span class="tag">Data marts</span><span class="tag">Incremental merge</span><span class="tag">Snapshots</span><span class="tag">Schema tests</span></div></div>
+</div></section>
+</main>
+<div class="footer-band"><div class="wrap footer-inner"><div><h2>More of my work</h2><p style="margin:7px 0 0;color:#34452e">Take a look at the rest of my analytics projects.</p></div><a href="./index.html#projects">Back to portfolio ↗</a></div></div>
+<footer><div class="wrap">© <span id="year"></span> Aaron O’Connell · Senior Fraud Analyst</div></footer>
+<script>document.getElementById('year').textContent=new Date().getFullYear();</script>
+</body>
+</html>
